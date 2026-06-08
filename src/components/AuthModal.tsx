@@ -29,6 +29,47 @@ const initialRegisterForm: RegisterRequest = {
   nickname: '',
 };
 
+const authPaperTheme = {
+  colors: {
+    primary: '#111827',
+    onPrimary: '#fff',
+    primaryContainer: '#111827',
+    secondaryContainer: '#f3f4f6',
+    onSecondaryContainer: '#111827',
+    outline: '#d1d5db',
+    surfaceVariant: '#f7f7f8',
+    onSurfaceVariant: '#6b7280',
+  },
+};
+
+const authTextInputProps = {
+  outlineColor: '#d1d5db',
+  activeOutlineColor: '#111827',
+  cursorColor: '#111827',
+  selectionColor: 'rgba(17, 24, 39, 0.2)',
+  textColor: '#111827',
+  theme: authPaperTheme,
+};
+
+const authSegmentedButtons = [
+  {
+    value: 'login',
+    label: '登录',
+    icon: 'login',
+    checkedColor: '#111827',
+    uncheckedColor: '#6b7280',
+    showSelectedCheck: false,
+  },
+  {
+    value: 'register',
+    label: '注册',
+    icon: 'account-plus-outline',
+    checkedColor: '#111827',
+    uncheckedColor: '#6b7280',
+    showSelectedCheck: false,
+  },
+];
+
 export function AuthModal({ visible, reason, onAuthenticated }: AuthModalProps) {
   const [mode, setMode] = useState<AuthMode>('login');
   const [loginForm, setLoginForm] = useState<LoginRequest>(initialLoginForm);
@@ -124,7 +165,7 @@ export function AuthModal({ visible, reason, onAuthenticated }: AuthModalProps) 
           contentContainerStyle={styles.scrollContent}>
           <View style={styles.panel}>
             <View style={styles.brandMark}>
-              <Icon source="shield-heart-outline" size={30} color="#111827" />
+              <Icon source="heart-pulse" size={30} color="#111827" />
             </View>
 
             <Text variant="headlineSmall" style={styles.title}>
@@ -138,107 +179,131 @@ export function AuthModal({ visible, reason, onAuthenticated }: AuthModalProps) 
               value={mode}
               onValueChange={switchMode}
               style={styles.segmented}
-              buttons={[
-                { value: 'login', label: '登录', icon: 'login' },
-                { value: 'register', label: '注册', icon: 'account-plus-outline' },
-              ]}
+              theme={authPaperTheme}
+              buttons={authSegmentedButtons}
             />
 
             {mode === 'login' ? (
               <View style={styles.form}>
                 <TextInput
+                  {...authTextInputProps}
                   mode="outlined"
                   label="账号"
                   placeholder="请输入用户名或邮箱"
                   value={loginForm.username}
                   onChangeText={(value) => updateLoginForm('username', value)}
                   autoCapitalize="none"
-                  left={<TextInput.Icon icon="account-outline" />}
+                  left={<TextInput.Icon icon="account-outline" color="#6b7280" />}
                   style={styles.field}
                 />
                 <TextInput
+                  {...authTextInputProps}
                   mode="outlined"
                   label="密码"
                   placeholder="请输入密码"
                   value={loginForm.password}
                   onChangeText={(value) => updateLoginForm('password', value)}
                   secureTextEntry={secureLoginPassword}
-                  left={<TextInput.Icon icon="lock-outline" />}
+                  left={<TextInput.Icon icon="lock-outline" color="#6b7280" />}
                   right={
                     <TextInput.Icon
                       icon={secureLoginPassword ? 'eye-outline' : 'eye-off-outline'}
+                      color="#6b7280"
                       onPress={() => setSecureLoginPassword((prev) => !prev)}
                     />
                   }
                   style={styles.field}
                 />
-                <Button mode="contained" loading={loading} disabled={loading} onPress={submitLogin} style={styles.primaryButton}>
+                <Button
+                  mode="contained"
+                  loading={loading}
+                  disabled={loading}
+                  buttonColor="#111827"
+                  textColor="#fff"
+                  rippleColor="rgba(255, 255, 255, 0.16)"
+                  onPress={submitLogin}
+                  style={styles.primaryButton}>
                   登录
                 </Button>
               </View>
             ) : (
               <View style={styles.form}>
                 <TextInput
+                  {...authTextInputProps}
                   mode="outlined"
                   label="用户名"
                   value={registerForm.username}
                   onChangeText={(value) => updateRegisterForm('username', value)}
                   autoCapitalize="none"
-                  left={<TextInput.Icon icon="account-outline" />}
+                  left={<TextInput.Icon icon="account-outline" color="#6b7280" />}
                   style={styles.field}
                 />
                 <TextInput
+                  {...authTextInputProps}
                   mode="outlined"
                   label="邮箱"
                   value={registerForm.email}
                   onChangeText={(value) => updateRegisterForm('email', value)}
                   keyboardType="email-address"
                   autoCapitalize="none"
-                  left={<TextInput.Icon icon="email-outline" />}
+                  left={<TextInput.Icon icon="email-outline" color="#6b7280" />}
                   style={styles.field}
                 />
                 <TextInput
+                  {...authTextInputProps}
                   mode="outlined"
                   label="昵称"
                   value={registerForm.nickname}
                   onChangeText={(value) => updateRegisterForm('nickname', value)}
-                  left={<TextInput.Icon icon="card-account-details-outline" />}
+                  left={<TextInput.Icon icon="card-account-details-outline" color="#6b7280" />}
                   style={styles.field}
                 />
                 <TextInput
+                  {...authTextInputProps}
                   mode="outlined"
                   label="手机号"
                   value={registerForm.phone}
                   onChangeText={(value) => updateRegisterForm('phone', value)}
                   keyboardType="phone-pad"
-                  left={<TextInput.Icon icon="phone-outline" />}
+                  left={<TextInput.Icon icon="phone-outline" color="#6b7280" />}
                   style={styles.field}
                 />
                 <TextInput
+                  {...authTextInputProps}
                   mode="outlined"
                   label="密码"
                   value={registerForm.password}
                   onChangeText={(value) => updateRegisterForm('password', value)}
                   secureTextEntry={secureRegisterPassword}
-                  left={<TextInput.Icon icon="lock-outline" />}
+                  left={<TextInput.Icon icon="lock-outline" color="#6b7280" />}
                   right={
                     <TextInput.Icon
                       icon={secureRegisterPassword ? 'eye-outline' : 'eye-off-outline'}
+                      color="#6b7280"
                       onPress={() => setSecureRegisterPassword((prev) => !prev)}
                     />
                   }
                   style={styles.field}
                 />
                 <TextInput
+                  {...authTextInputProps}
                   mode="outlined"
                   label="确认密码"
                   value={registerForm.confirmPassword}
                   onChangeText={(value) => updateRegisterForm('confirmPassword', value)}
                   secureTextEntry={secureRegisterPassword}
-                  left={<TextInput.Icon icon="lock-check-outline" />}
+                  left={<TextInput.Icon icon="lock-check-outline" color="#6b7280" />}
                   style={styles.field}
                 />
-                <Button mode="contained" loading={loading} disabled={loading} onPress={submitRegister} style={styles.primaryButton}>
+                <Button
+                  mode="contained"
+                  loading={loading}
+                  disabled={loading}
+                  buttonColor="#111827"
+                  textColor="#fff"
+                  rippleColor="rgba(255, 255, 255, 0.16)"
+                  onPress={submitRegister}
+                  style={styles.primaryButton}>
                   创建账户
                 </Button>
               </View>

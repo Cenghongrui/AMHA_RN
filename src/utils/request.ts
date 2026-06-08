@@ -45,7 +45,16 @@ service.interceptors.response.use(
 
     return Promise.reject(new Error(message));
   },
-  (error: unknown) => Promise.reject(error),
+  (error: unknown) => {
+    if (axios.isAxiosError(error) && !error.response) {
+      const isWebProxy = process.env.EXPO_OS === 'web' && API_BASE_URL.includes(':5174/api');
+      const hint = isWebProxy ? '请先启动 AMHA_Final 的 5174 端口作为本地 API 代理。' : '请检查后端服务或当前网络。';
+
+      return Promise.reject(new Error(`网络连接失败：无法访问 ${API_BASE_URL}。${hint}`));
+    }
+
+    return Promise.reject(error);
+  },
 );
 
 export default service as HttpClient;
