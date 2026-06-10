@@ -2,6 +2,19 @@
 
 AMHA_RN 是一个基于 Expo + React Native 的 AI 心理健康助手移动端项目。项目复用了 Web 端已有的后端接口能力，在移动端重构了 AI 对话、情绪日记、知识库、登录注册和历史会话等用户侧功能。
 
+<img width="506" height="960" alt="image" src="https://github.com/user-attachments/assets/8921e0e1-2611-4ed6-bf50-f4a808e3fc9b" />
+
+<img width="506" height="960" alt="image" src="https://github.com/user-attachments/assets/3350ec67-0f05-487d-b979-8f7e090e3f97" />
+
+<img width="506" height="960" alt="image" src="https://github.com/user-attachments/assets/2397d4c1-b3d5-4d05-a4cf-d9a88265445c" />
+
+<img width="506" height="960" alt="image" src="https://github.com/user-attachments/assets/ca9c726f-ef5d-42bc-a009-395189321235" />
+
+<img width="506" height="960" alt="image" src="https://github.com/user-attachments/assets/c91eaa47-2251-408a-aeb3-4d9fc47ed77e" />
+
+
+
+
 ## 功能特性
 
 - AI 对话首页：打开 App 直接进入对话界面，整体布局参考 ChatGPT 移动端。
